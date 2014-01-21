@@ -41,6 +41,7 @@ class Fluent::PingMessageCheckerOutput < Fluent::Output
 
   def start_watch
     @watcher = Thread.new(&method(:watch))
+    @watcher.priority = Thread.current.priority - 1
   end
 
   def update_state(list)
